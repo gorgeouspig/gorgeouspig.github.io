@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eiji Kato</title>
+  <meta name="description" content="Eiji Kato — Ph.D. student, Uemura Lab, The University of Tokyo. Cryo-electron tomography of individual microtubules and βIII-tubulin-mediated Taxol resistance.">
+  <meta property="og:title" content="Eiji Kato — The University of Tokyo">
+  <meta property="og:description" content="Cryo-ET of individual microtubules and βIII-tubulin-mediated Taxol resistance. ICBBS 2026 poster.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://gorgeouspig.github.io/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232f6f5e'/><g fill='white'><circle cx='10' cy='9' r='3'/><circle cx='16' cy='9' r='3'/><circle cx='22' cy='9' r='3'/><circle cx='13' cy='16' r='3'/><circle cx='19' cy='16' r='3'/><circle cx='10' cy='23' r='3'/><circle cx='16' cy='23' r='3'/><circle cx='22' cy='23' r='3'/></g></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    // Pick the language before first paint: saved choice, else browser language.
+    (function () {
+      var l = null;
+      try { l = localStorage.getItem('lang'); } catch (e) {}
+      if (l !== 'ja' && l !== 'en') l = /^ja\b/i.test(navigator.language || '') ? 'ja' : 'en';
+      document.documentElement.setAttribute('data-lang', l);
+      document.documentElement.lang = l;
+    })();
+  </script>
+  <style>
+    /* Layout: single reading column; header, then poster card, then CV lists. */
+    :root {
+      --bg: #f7f6f2;
+      --surface: #ffffff;
+      --text: #1d1f1e;
+      --muted: #5c6460;
+      --line: #e2e0d8;
+      --accent: #2f6f5e;
+      --accent-soft: #e3efe9;
+      --font-body: "IBM Plex Sans", "IBM Plex Sans JP", system-ui, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #121514;
+        --surface: #1a1e1c;
+        --text: #e8ebe9;
+        --muted: #9aa39e;
+        --line: #2a302d;
+        --accent: #7cc4ad;
+        --accent-soft: #1d2b26;
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #121514;
+      --surface: #1a1e1c;
+      --text: #e8ebe9;
+      --muted: #9aa39e;
+      --line: #2a302d;
+      --accent: #7cc4ad;
+      --accent-soft: #1d2b26;
+      color-scheme: dark;
+    }
+    :root[data-lang="ja"] .en, :root:not([data-lang="ja"]) .ja { display: none !important; }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+    }
+    :root[data-lang="ja"] body { line-height: 1.85; }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .wrap {
+      max-width: 800px; margin: 0 auto;
+      padding-left: max(20px, env(safe-area-inset-left, 0px));
+      padding-right: max(20px, env(safe-area-inset-right, 0px));
+    }
+
+    .topbar { display: flex; justify-content: flex-end; padding-top: 20px; }
+    .lang {
+      display: inline-flex; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--surface); padding: 3px;
+    }
+    .lang button {
+      font: 500 .85rem/1 var(--font-body); color: var(--muted);
+      background: none; border: 0; border-radius: 999px; padding: 7px 14px; cursor: pointer;
+    }
+    .lang button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+
+    header { padding: 48px 0 48px; }
+    .lattice { display: block; width: 100%; height: 44px; margin-bottom: 28px; }
+    .lattice circle { fill: var(--accent); }
+    h1 {
+      font-size: clamp(2.2rem, 7vw, 3.2rem);
+      line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.02em;
+    }
+    .role { margin: 0 0 4px; font-size: 1.05rem; }
+    .lab { margin: 0 0 24px; color: var(--muted); }
+    .lead { font-size: 1.08rem; margin: 0 0 12px; max-width: 38em; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 24px 0 0; list-style: none; }
+    .links li { min-width: 0; max-width: 100%; }
+    .links a {
+      display: inline-flex; align-items: center; gap: 8px; overflow-wrap: anywhere;
+      padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--surface); color: var(--text); text-decoration: none; font-size: .95rem;
+    }
+    .links a:hover { border-color: var(--accent); color: var(--accent); }
+    .links svg { width: 17px; height: 17px; fill: currentColor; flex: none; }
+
+    section { padding: 40px 0; border-top: 1px solid var(--line); }
+    h2 {
+      font-family: var(--font-mono); font-weight: 500;
+      font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); margin: 0 0 22px;
+    }
+
+    .poster {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 12px; padding: 22px 24px;
+    }
+    .badge {
+      display: inline-block; font-family: var(--font-mono); font-size: .75rem;
+      letter-spacing: .06em; padding: 2px 10px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent); margin-bottom: 10px;
+    }
+    .poster h3 { margin: 0 0 8px; font-size: 1.3rem; line-height: 1.35; text-wrap: balance; }
+    .meta { margin: 0 0 4px; color: var(--muted); font-size: .95rem; }
+    .meta strong { color: var(--text); font-weight: 500; }
+    .findings { margin: 18px 0 0; padding: 0; list-style: none; counter-reset: f; }
+    .findings li {
+      position: relative; padding: 10px 0 10px 40px; border-top: 1px dashed var(--line);
+      counter-increment: f;
+    }
+    .findings li::before {
+      content: counter(f); position: absolute; left: 0; top: 10px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent); color: var(--surface);
+      font: 600 .85rem/26px var(--font-mono); text-align: center;
+    }
+    .findings .note { color: var(--muted); font-size: .9rem; }
+    .ask { margin: 16px 0 0; font-size: .95rem; color: var(--muted); overflow-wrap: anywhere; }
+
+    ul.list { margin: 0; padding: 0; list-style: none; }
+    ul.list li { padding: 10px 0; border-top: 1px solid var(--line); }
+    ul.list li:first-child { border-top: 0; padding-top: 0; }
+    .when { display: block; font-family: var(--font-mono); font-size: .8rem; color: var(--muted); }
+    .award { color: var(--accent); font-weight: 600; }
+    .upcoming { display: inline-block; font-family: var(--font-mono); font-size: .72rem;
+      padding: 0 8px; border: 1px solid var(--accent); color: var(--accent); border-radius: 999px; margin-left: 6px; }
+
+    dl.edu { display: grid; grid-template-columns: max-content 1fr; gap: 10px 24px; margin: 0; }
+    dl.edu dt { font-family: var(--font-mono); font-size: .85rem; color: var(--muted); padding-top: 3px; }
+    dl.edu dd { margin: 0; min-width: 0; }
+
+    .fun {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      padding: 18px 20px; border: 1px dashed var(--line); border-radius: 12px;
+      color: var(--text); text-decoration: none;
+    }
+    .fun:hover { border-color: var(--accent); }
+    .fun svg { flex: none; width: 64px; height: 64px; }
+    .fun div { flex: 1 1 220px; min-width: 0; }
+    .fun strong { display: block; font-size: 1.1rem; }
+    .fun span.d { color: var(--muted); font-size: .95rem; }
+
+    footer { padding: 36px 0 64px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+
+    @media (max-width: 560px) {
+      header { padding: 32px 0 36px; }
+      .poster { padding: 18px 18px; }
+      dl.edu { grid-template-columns: 1fr; gap: 0; }
+      dl.edu dd { margin-bottom: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-set-lang="ja" aria-pressed="false">日本語</button>
+      </div>
+    </div>
+
+    <header>
+      <svg class="lattice" viewBox="0 0 720 44" preserveAspectRatio="xMinYMid meet" aria-hidden="true" id="lattice"></svg>
+      <h1>Eiji Kato</h1>
+      <p class="role en">Ph.D. student, Department of Biological Sciences, Graduate School of Science, The University of Tokyo</p>
+      <p class="role ja">東京大学 大学院理学系研究科 生物科学専攻 博士課程</p>
+      <p class="lab en">Uemura Lab · Supervisor: Prof. Sotaro Uemura · Research advisor: Dr. Tomohiro Shima</p>
+      <p class="lab ja">上村研究室（指導教員：上村 想太郎 教授／研究指導：島 知弘 博士）</p>
+      <p class="lead en">I measure the structural heterogeneity of individual microtubules by cryo-electron tomography, building automated pipelines for 3D filament detection and analyzing measurement bias and uncertainty.</p>
+      <p class="lead ja">クライオ電子線トモグラフィーで、微小管一本一本の構造のばらつきを測っています。3D でフィラメントを自動検出するパイプラインを作り、測定のバイアスや不確かさも解析しています。</p>
+      <p class="lead en">My current project asks why cancer cells with more βIII-tubulin resist Taxol, combining non-averaging cryo-ET of individual microtubules with molecular simulations.</p>
+      <p class="lead ja">いまのテーマは、βIII-チューブリンの多いがん細胞がなぜ Taxol に耐性を示すのか。平均化しない微小管ごとのクライオ ET と分子シミュレーションを組み合わせて調べています。</p>
+      <ul class="links">
+        <li><a href="mailto:kato-eiji994@g.ecc.u-tokyo.ac.jp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.4V17h16V7.4l-8 5.6-8-5.6zM5.6 7l6.4 4.5L18.4 7H5.6z"/></svg>
+          kato-eiji994@g.ecc.u-tokyo.ac.jp</a></li>
+        <li><a href="https://github.com/gorgeouspig">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub</a></li>
+        <!-- TODO: ORCID -->
+      </ul>
+    </header>
+
+    <section id="icbbs2026">
+      <h2><span class="en">ICBBS 2026 Poster</span><span class="ja">ICBBS 2026 ポスター発表</span></h2>
+      <article class="poster">
+        <span class="badge">POSTER · NOV 24–27, 2026 · BUSAN</span>
+        <h3>Structural Basis of β3-Tubulin-Mediated Taxol Resistance</h3>
+        <p class="meta"><strong>Eiji Kato</strong>, Hiroshi Yamaguchi, Yuji Sakai, Tomohiro Shima</p>
+        <p class="meta">ICBBS 2026 / Biophysical Society of Japan, BEXCO, Busan</p>
+        <!-- TODO: poster number / session -->
+        <ol class="findings">
+          <li class="en">Taxol does not need to expand the microtubule lattice <span class="note">(cryo-ET)</span>.</li>
+          <li class="ja">Taxol は微小管の格子を広げなくてもよい <span class="note">（クライオ ET）</span></li>
+          <li class="en">βIII-tubulin has intrinsically weak lateral contacts <span class="note">(all-atom MD)</span>.</li>
+          <li class="ja">βIII-チューブリンは、もともと横方向の結合が弱い <span class="note">（全原子 MD）</span></li>
+          <li class="en">βIII is not straightened by Taxol <span class="note">(preliminary; all-atom MD and a coarse-grained end model)</span>.</li>
+          <li class="ja">βIII は Taxol でまっすぐにならない <span class="note">（予備的な結果。全原子 MD と粗視化した末端モデル）</span></li>
+        </ol>
+        <p class="ask"><span class="en">Ask me for the poster PDF:</span><span class="ja">ポスターの PDF はメールでお問い合わせください：</span> <a href="mailto:kato-eiji994@g.ecc.u-tokyo.ac.jp">kato-eiji994@g.ecc.u-tokyo.ac.jp</a></p>
+      </article>
+    </section>
+
+    <section id="presentations">
+      <h2><span class="en">Conference Presentations</span><span class="ja">学会発表</span></h2>
+      <ul class="list">
+        <li>
+          <span class="when"><span class="en">Jan 2027 · Poster</span><span class="ja">2027年1月 · ポスター</span> <span class="upcoming"><span class="en">upcoming</span><span class="ja">予定</span></span></span>
+          E. Kato et al. “Integrating per-microtubule cryo-ET and molecular simulations to dissect βIII-tubulin-mediated Taxol resistance.” 57th NIPS International Symposium, Okazaki.
+        </li>
+        <li>
+          <span class="when"><span class="en">Nov 2026 · Poster</span><span class="ja">2026年11月 · ポスター</span></span>
+          E. Kato, H. Yamaguchi, Y. Sakai, T. Shima. “Structural basis of β3-tubulin-mediated Taxol resistance.” ICBBS 2026 / BSJ, Busan.
+        </li>
+        <li>
+          <span class="when"><span class="en">Oct 2026 · Poster</span><span class="ja">2026年10月 · ポスター</span></span>
+          E. Kato, H. Yamaguchi, Y. Sakai, T. Shima. “The microtubule lattice under low-dose Taxol.” Transformative Research Area (A) “Biological Clusters” meeting.
+        </li>
+        <li>
+          <span class="when"><span class="en">Sep 2026 · Oral and poster</span><span class="ja">2026年9月 · 口頭・ポスター</span></span>
+          E. Kato, H. Yamaguchi, Y. Sakai, T. Shima. “Structural contribution of β3-tubulin to Taxol resistance.” Molecular Motor Workshop. <span class="award"><span class="en">Poster Presentation Award.</span><span class="ja">ポスター発表賞</span></span>
+        </li>
+        <li>
+          <span class="when"><span class="en">Mar 2025 · Oral</span><span class="ja">2025年3月 · 口頭</span></span>
+          E. Kato, S. Uemura. “A novel approach to saliva-based biomarker detection using solid-state nanopores.” The Nanopore Meeting 2025, Tokyo.
+        </li>
+        <li>
+          <span class="when"><span class="en">Jun 2024 · Poster</span><span class="ja">2024年6月 · ポスター</span></span>
+          E. Kato, R. Akita, S. Uemura. “Development for the detection of salivary biomarkers by solid-state nanopore.” 21st IUPAB Congress, Kyoto.
+        </li>
+      </ul>
+    </section>
+
+    <section id="methods">
+      <h2><span class="en">Methods</span><span class="ja">手法</span></h2>
+      <ul class="list">
+        <li><span class="en">Cryo-electron tomography of individual microtubules (non-averaging lattice analysis; cylindra, IMOD)</span><span class="ja">微小管一本ずつのクライオ電子線トモグラフィー（平均化しない格子解析。cylindra、IMOD）</span></li>
+        <li><span class="en">Automated 3D filament detection (classical and deep learning)</span><span class="ja">3D フィラメントの自動検出（古典的手法と深層学習）</span></li>
+        <li><span class="en">Molecular dynamics analysis (MDAnalysis); coarse-grained simulations of microtubule ends</span><span class="ja">分子動力学の解析（MDAnalysis）、微小管末端の粗視化シミュレーション</span></li>
+        <li><span class="en">Tubulin purification, cryo-EM grid preparation</span><span class="ja">チューブリンの精製、クライオ EM グリッドの作製</span></li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2><span class="en">Education</span><span class="ja">学歴</span></h2>
+      <dl class="edu">
+        <dt>2026 – </dt><dd><span class="en">Ph.D. course, Biological Sciences, Graduate School of Science, The University of Tokyo</span><span class="ja">東京大学 大学院理学系研究科 生物科学専攻 博士課程</span></dd>
+        <dt>2024 – 2026</dt><dd><span class="en">M.Sc., Biological Sciences, Graduate School of Science, The University of Tokyo</span><span class="ja">東京大学 大学院理学系研究科 生物科学専攻 修士課程 修了</span></dd>
+        <dt>2020 – 2024</dt><dd><span class="en">B.Sc., Biological Sciences, Faculty of Science, The University of Tokyo</span><span class="ja">東京大学 理学部 生物学科 卒業</span></dd>
+      </dl>
+    </section>
+
+    <section id="awards">
+      <h2><span class="en">Awards</span><span class="ja">受賞</span></h2>
+      <ul class="list">
+        <li><span class="when"><span class="en">Sep 2026</span><span class="ja">2026年9月</span></span><span class="en">Poster Presentation Award, Molecular Motor Workshop</span><span class="ja">ポスター発表賞（Molecular Motor Workshop）</span></li>
+      </ul>
+    </section>
+
+    <section id="fun">
+      <h2><span class="en">Just for Fun</span><span class="ja">おまけ</span></h2>
+      <a class="fun" href="patches.html">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="2" y="2" width="60" height="60" rx="8" fill="var(--accent-soft)"/>
+          <g fill="none" stroke="var(--line)" stroke-width="1.5"><path d="M22 2v60M42 2v60M2 22h60M2 42h60"/></g>
+          <g fill="var(--accent)"><circle cx="32" cy="12" r="6"/><circle cx="12" cy="52" r="6"/><circle cx="52" cy="32" r="6"/></g>
+        </svg>
+        <div>
+          <strong>Patches</strong>
+          <span class="d en">A logic puzzle: one piece in every row, column and colored patch, with no two touching. Three levels.</span>
+          <span class="d ja">ロジックパズル。各行・各列・各色の領域に駒を1つずつ、隣り合わないように置きます。難易度は3段階。</span>
+        </div>
+      </a>
+    </section>
+
+    <footer>© 2026 Eiji Kato</footer>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btns = document.querySelectorAll('[data-set-lang]');
+      function sync() {
+        var l = root.getAttribute('data-lang');
+        btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.setLang === l)); });
+      }
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var l = b.dataset.setLang;
+          root.setAttribute('data-lang', l); root.lang = l;
+          try { localStorage.setItem('lang', l); } catch (e) {}
+          sync();
+        });
+      });
+      sync();
+
+      // Decorative tubulin-lattice dots in the header
+      var svg = document.getElementById('lattice'), out = '';
+      for (var c = 0; c < 45; c++) {
+        for (var r = 0; r < 3; r++) {
+          var x = 8 + c * 16, y = 8 + r * 14 + (c % 2 ? 7 : 0);
+          if (y > 40) continue;
+          var o = (0.25 + 0.75 * Math.abs(Math.sin(c * 0.37 + r))).toFixed(2);
+          out += '<circle cx="' + x + '" cy="' + y + '" r="5" opacity="' + o + '"/>';
+        }
+      }
+      svg.innerHTML = out;
+    })();
+  </script>
+</body>
+</html>
